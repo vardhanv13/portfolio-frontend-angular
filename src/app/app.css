@@ -1,0 +1,119 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 48px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* LEFT SECTION */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-photo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.nav-profile {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.nav-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.nav-meta {
+  font-size: 0.85rem;
+  color: #666;
+  display: flex;
+  gap: 6px;
+}
+
+/* RIGHT SECTION */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  margin-left: 22px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+}
+
+/* RESUME BUTTON */
+.resume-btn {
+  margin-left: 28px;
+  padding: 8px 18px;
+  border: 2px solid #333;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.25s ease;
+}
+
+.resume-btn:hover {
+  background-color: #333;
+  color: #fff;
+}
+.navbar {
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* text */
+.nav-name,
+.nav-links a {
+  color: var(--link-color);
+}
+
+.nav-links a.active::after {
+  background-color: var(--link-color);
+}
+
+/* resume button */
+.resume-btn {
+  border: 2px solid var(--link-color);
+  color: var(--link-color);
+}
+
+.resume-btn:hover {
+  background-color: var(--link-color);
+  color: var(--bg-color);
+}
+.theme-toggle {
+  margin-left: 20px;
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--link-color);
+}

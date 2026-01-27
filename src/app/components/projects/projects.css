@@ -1,0 +1,80 @@
+.projects {
+  padding: 60px 40px;
+}
+
+.projects h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.project-card {
+  background-color: var(--nav-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.project-img-wrapper {
+  width: 100%;
+  height: 160px;              /* consistent visual height */
+  overflow: hidden;
+  background-color: #000;     /* subtle fallback */
+}
+
+.project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* fills without distortion */
+  object-position: center;    /* center important part */
+  display: block;
+}
+
+
+
+.project-content {
+  padding: 18px;
+}
+
+.project-content h3 {
+  margin-bottom: 10px;
+}
+
+.project-content p {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.tech span {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background-color: var(--border-color);
+}
+
+.actions a {
+  margin-right: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--link-color);
+}

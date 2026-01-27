@@ -1,0 +1,16 @@
+<section class="hero" *ngIf="profile">
+
+  <img src="/images/profile.jpeg" class="profile-img">
+
+
+  <h1>{{ profile.name }}</h1>
+  <h2>{{ profile.role }}</h2>
+  <p>{{ profile.bio }}</p>
+
+  <div class="links">
+    <a [href]="profile.github" target="_blank">GitHub</a>
+    <a [href]="profile.linkedin" target="_blank">LinkedIn</a>
+    <a href="Vishnuvardhan_Resume.pdf" download class="resume-btn">Resume</a>
+  </div>
+
+</section>

@@ -1,0 +1,14 @@
+<h2>Contact Me</h2>
+
+<form (ngSubmit)="submit()">
+  <input type="text" placeholder="Name" [(ngModel)]="contact.name" name="name" required />
+  <br><br>
+
+  <input type="email" placeholder="Email" [(ngModel)]="contact.email" name="email" required />
+  <br><br>
+
+  <textarea placeholder="Message" [(ngModel)]="contact.message" name="message" required></textarea>
+  <br><br>
+
+  <button type="submit">Send</button>
+</form>
