@@ -1,0 +1,26 @@
+.contact-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 30px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.form-control {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.15rem rgba(37, 99, 235, 0.25);
+}
+
+textarea.form-control {
+  resize: none;
+}

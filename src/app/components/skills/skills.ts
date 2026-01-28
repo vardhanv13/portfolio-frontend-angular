@@ -19,4 +19,16 @@ export class Skills implements OnInit {
       this.skills = data;
     });
   }
+  getLevelPercentage(level: string): string {
+  switch (level.toLowerCase()) {
+    case 'beginner':
+      return '40%';
+    case 'intermediate':
+      return '70%';
+    case 'advanced':
+      return '90%';
+    default:
+      return '50%';
+  }
+}
 }
