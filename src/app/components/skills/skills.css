@@ -1,0 +1,36 @@
+.skill-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.skill-card h5 {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.skill-level {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Progress Bar */
+.skill-progress {
+  height: 8px;
+  border-radius: 6px;
+  background-color: var(--border-color);
+  overflow: hidden;
+}
+
+.skill-progress .progress-bar {
+  background-color: var(--primary-color);
+  transition: width 0.6s ease;
+}
