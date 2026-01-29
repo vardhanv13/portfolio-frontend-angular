@@ -1,52 +1,109 @@
-<div class="container py-5">
-  <h2 class="text-center fw-bold mb-5">Contact Me</h2>
+<section class="contact">
 
-  <div class="row justify-content-center">
-    <div class="col-md-8 col-lg-6">
+  <div 
+    class="notification-toast"
+    [ngClass]="{ show: showMessage, success: isSuccess, error: !isSuccess }">
+    <div class="toast-content">
+      {{ statusMessage }}
+    </div>
+    <button class="toast-close" (click)="showMessage = false" aria-label="Close notification">
+      ✕
+    </button>
+  </div>
 
-      <form (ngSubmit)="submit()" class="contact-card shadow-sm">
+  <h2>Get In Touch</h2>
 
-        <div class="mb-4">
-          <label class="form-label">Name</label>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Your name"
-            [(ngModel)]="contact.name"
-            name="name"
-            required>
-        </div>
+  <div class="contact-container">
+    <form (ngSubmit)="submit()" class="contact-card" [formGroup]="contactForm">
+      
+      <div class="form-group">
+        <label class="form-label">
+          Full Name <span>*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="John Doe"
+          formControlName="name"
+          [class.error]="isFieldInvalid('name')"
+          [class.success]="isFieldValid('name')"
+          aria-label="Full name">
+        <span class="error-message" *ngIf="isFieldInvalid('name') && (contactForm.get('name')?.touched || submitted)">
+            Please enter your name
+        </span>
+      </div>
 
-        <div class="mb-4">
-          <label class="form-label">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            placeholder="your@email.com"
-            [(ngModel)]="contact.email"
-            name="email"
-            required>
-        </div>
+      <div class="form-group">
+        <label class="form-label">
+          Email Address <span>*</span>
+        </label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="your@email.com"
+          formControlName="email"
+          [class.error]="isFieldInvalid('email')"
+          [class.success]="isFieldValid('email')"
+          aria-label="Email address">
+        <span class="error-message" *ngIf="isFieldInvalid('email') && (contactForm.get('email')?.touched || submitted)">
+          Please enter a valid email
+        </span>
+      </div>
 
-        <div class="mb-4">
-          <label class="form-label">Message</label>
-          <textarea
-            rows="5"
-            class="form-control"
-            placeholder="Write your message here..."
-            [(ngModel)]="contact.message"
-            name="message"
-            required></textarea>
-        </div>
+      <div class="form-group">
+        <label class="form-label">
+          Message <span>*</span>
+        </label>
+        <textarea
+          class="form-control"
+          placeholder="Write your message here... (minimum 10 characters)"
+          formControlName="message"
+          [class.error]="isFieldInvalid('message')"
+          [class.success]="isFieldValid('message')"
+          aria-label="Your message"></textarea>
+        <span class="error-message" *ngIf="isFieldInvalid('message') && (contactForm.get('message')?.touched || submitted)">
+            Message must be at least 10 characters
+        </span>
+      </div>
 
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary px-5">
-            <i class="bi bi-send"></i> Send Message
-          </button>
-        </div>
+      <div class="form-actions">
+        <button 
+          type="submit" 
+          class="submit-btn"
+          [disabled]="!contactForm.valid || isSubmitting"
+          [class.loading]="isSubmitting">
+          <span class="submit-btn-text">
+            <span *ngIf="!isSubmitting">✉️ Send Message</span>
+            <span *ngIf="isSubmitting">⏳ Sending...</span>
+          </span>
+        </button>
+        <button 
+          type="reset" 
+          class="reset-btn"
+          [disabled]="isSubmitting"
+          (click)="resetForm()">
+          🔄 Clear
+        </button>
+      </div>
+    </form>
 
-      </form>
 
+    <div class="contact-info">
+      <div class="info-item">
+        <div class="info-icon">📧</div>
+        <h4>Email</h4>
+        <p>vishnuvardhanandhe@gmail.com</p>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📱</div>
+        <h4>Phone</h4>
+        <p>7842243462</p>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <h4>Location</h4>
+        <p>Chennai, India</p>
+      </div>
     </div>
   </div>
-</div>
+</section>

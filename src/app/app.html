@@ -1,10 +1,9 @@
-<nav class="navbar">
-  <div class="nav-left">
-    <img src="/images/profile.jpeg" class="nav-photo" />
-
+<nav class="navbar" [attr.data-theme]="isDarkMode ? 'dark' : 'light'">
+  <div class="nav-left" (mouseenter)="onNavHover(true)" (mouseleave)="onNavHover(false)">
+    <img src="/images/profile.jpeg" class="nav-photo" alt="Profile" />
     <div class="nav-profile">
-      <div class="nav-name">{{ profile?.name }}</div>
-      <div class="nav-meta">
+      <div class="nav-name" *ngIf="profile?.name">{{ profile?.name }}</div>
+      <div class="nav-meta" *ngIf="profile?.email">
         <span>{{ profile?.email }}</span>
         <span>•</span>
         <span>{{ profile?.mobile }}</span>
@@ -13,15 +12,34 @@
   </div>
 
   <div class="nav-links">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-    <a routerLink="/projects" routerLinkActive="active">Projects</a>
-    <a routerLink="/skills" routerLinkActive="active">Skills</a>
-    <a routerLink="/contact" routerLinkActive="active">Contact</a>
-    <button class="theme-toggle" (click)="toggleTheme()">
-  {{ isDarkMode ? '☀️' : '🌙' }}
-</button>
-
+    <a 
+      routerLink="/" 
+      routerLinkActive="active" 
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-link-item">
+      <span>🏠</span> Home
+    </a>
+    <a 
+      routerLink="/projects" 
+      routerLinkActive="active"
+      class="nav-link-item">
+      <span>💼</span> Projects
+    </a>
+    <a 
+      routerLink="/skills" 
+      routerLinkActive="active"
+      class="nav-link-item">
+      <span>⚡</span> Skills
+    </a>
+    <a 
+      routerLink="/contact" 
+      routerLinkActive="active"
+      class="nav-link-item">
+      <span>✉️</span> Contact
+    </a>
   </div>
 </nav>
 
-<router-outlet></router-outlet>
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>

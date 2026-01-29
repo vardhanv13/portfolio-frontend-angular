@@ -1,16 +1,42 @@
 <section class="hero" *ngIf="profile">
+  <div class="profile-img-wrapper">
+    <img 
+      src="/images/profile.jpeg" 
+      class="profile-img" 
+      alt="Profile picture of {{ profile?.name }}"
+      [attr.aria-label]="'Profile picture of ' + profile?.name">
+  </div>
 
-  <img src="/images/profile.jpeg" class="profile-img">
-
-
-  <h1>{{ profile.name }}</h1>
+  <h1 [attr.data-text]="profile.name">{{ profile.name }}</h1>
   <h2>{{ profile.role }}</h2>
   <p>{{ profile.bio }}</p>
 
   <div class="links">
-    <a [href]="profile.github" target="_blank">GitHub</a>
-    <a [href]="profile.linkedin" target="_blank">LinkedIn</a>
-    <a href="Vishnuvardhan_Resume.pdf" download class="resume-btn">Resume</a>
+    <a 
+      [href]="profile.github" 
+      target="_blank"
+      rel="noopener noreferrer"
+      class="social-link github-link"
+      title="Visit GitHub profile"
+      aria-label="GitHub">
+      <span>🐙</span> GitHub
+    </a>
+    <a 
+      [href]="profile.linkedin" 
+      target="_blank"
+      rel="noopener noreferrer"
+      class="social-link linkedin-link"
+      title="Visit LinkedIn profile"
+      aria-label="LinkedIn">
+      <span>💼</span> LinkedIn
+    </a>
+    <a 
+      href="Vishnuvardhan_Resume.pdf" 
+      download 
+      class="resume-btn"
+      title="Download resume"
+      aria-label="Download resume">
+      <span>📄</span> Download Resume
+    </a>
   </div>
-
 </section>

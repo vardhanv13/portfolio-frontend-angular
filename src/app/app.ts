@@ -1,54 +1,56 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { ProfileService } from './services/profile';
+import { CommonModule } from '@angular/common';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
-export class AppComponent implements OnInit {
-
+export class AppComponent implements OnInit, OnDestroy {
   profile: any;
-  isDarkMode = false;
+  isDarkMode = true;
+  isNavHovered = false;
+  private destroy$ = new Subject<void>();
 
-  constructor(private profileService: ProfileService) {}
-
+  constructor(private profileService: ProfileService) {
+    this.initializeDefaultDarkMode();
+  }
+  
   ngOnInit(): void {
-    // 🔹 Load profile data
-    this.profileService.getProfile().subscribe(data => {
-      this.profile = data;
-      console.log('PROFILE DATA:', data);
-    });
-
-    // 🔹 Restore theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      this.enableDarkMode();
-    }
+    this.loadProfileData();
   }
 
-  toggleTheme() {
-    this.isDarkMode = !this.isDarkMode;
-
-    if (this.isDarkMode) {
-      this.enableDarkMode();
-    } else {
-      this.disableDarkMode();
-    }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
-  enableDarkMode() {
+  private initializeDefaultDarkMode(): void {
     document.body.classList.add('dark');
-    this.isDarkMode = true;
     localStorage.setItem('theme', 'dark');
   }
 
-  disableDarkMode() {
-    document.body.classList.remove('dark');
-    this.isDarkMode = false;
-    localStorage.setItem('theme', 'light');
+
+  private loadProfileData(): void {
+    this.profileService.getProfile()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (data) => {
+          this.profile = data;
+        },
+        error: (error) => {
+          console.error('Error loading profile data:', error);
+        }
+      });
+  }
+
+  onNavHover(isHovered: boolean): void {
+    this.isNavHovered = isHovered;
   }
 }

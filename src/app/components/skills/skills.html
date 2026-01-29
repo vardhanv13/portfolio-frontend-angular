@@ -1,21 +1,32 @@
-<div class="container py-5">
-  <h2 class="text-center fw-bold mb-5">Skills</h2>
+<section class="skills">
+  <h2>Skills & Expertise</h2>
 
-  <div class="row g-4">
-    <div class="col-md-6 col-lg-4" *ngFor="let skill of skills">
-      <div class="skill-card shadow-sm">
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <h5 class="mb-0">{{ skill.name }}</h5>
-          <span class="skill-level">{{ skill.level }}</span>
+  <div class="skills-container">
+    <div class="skill-card" *ngFor="let skill of skills; let i = index">
+    
+      <div class="skill-header">
+        <h5>{{ skill.name }}</h5>
+        <span 
+          class="skill-level"
+          [ngClass]="'skill-level.' + skill.level.toLowerCase()"
+          [attr.aria-label]="skill.name + ' skill level: ' + skill.level">
+          {{ skill.level }}
+        </span>
+      </div>
+
+      <div class="skill-progress-wrapper">
+        <div class="progress-label">
+          <span class="skill-info">Proficiency</span>
+          <span class="skill-percentage">{{ getLevelPercentage(skill.level) }}</span>
         </div>
-
-        <div class="progress skill-progress">
+        <div class="skill-progress" [attr.aria-valuenow]="getLevelPercentage(skill.level)" aria-valuemin="0" aria-valuemax="100" role="progressbar">
           <div
             class="progress-bar"
-            [style.width]="getLevelPercentage(skill.level)">
+            [style.width]="getLevelPercentage(skill.level)"
+            [attr.aria-label]="skill.name + ' proficiency at ' + getLevelPercentage(skill.level)">
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
