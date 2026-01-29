@@ -57,17 +57,17 @@ export class Contact implements OnInit, OnDestroy {
 
   submit(): void {
     this.submitted = true;
-    console.log('📝 Form submitted. Valid:', this.contactForm.valid);
+    console.log(' Form submitted. Valid:', this.contactForm.valid);
     console.log('Form Value:', this.contactForm.value);
     
     if (!this.contactForm.valid) {
-      console.log('❌ Form is invalid', this.contactForm.errors);
+      console.log(' Form is invalid', this.contactForm.errors);
       return;
     }
 
     this.isSubmitting = true;
     const formData = this.contactForm.value;
-    console.log('📤 Sending form data:', formData);
+    console.log(' Sending form data:', formData);
 
     this.contactService
       .sendMessage(formData)
@@ -117,7 +117,7 @@ export class Contact implements OnInit, OnDestroy {
       this.contactForm.get(key)?.markAsUntouched();
       this.contactForm.get(key)?.markAsPristine();
     });
-    console.log('🔄 Form reset');
+    console.log(' Form reset');
   }
 }
 
